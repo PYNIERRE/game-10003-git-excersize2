@@ -3,21 +3,23 @@ using System.Runtime.InteropServices;
 // initial stats
 int coin = 0;
 int health = 3;
+int maxhealth = 3;
 bool unscathed = true;
+bool dead = false;
 
 Console.WriteLine("* Look around?\n* [y/n]"); // y actually does not exist as an option! set it as else like everything else to save on inputs
 
 string input = Console.ReadLine();
-if (input == "y") // gonna find a better way to read for the letter so that it looks for it in the readline instead of. looking for the readline to JUST be y
+if (input.Contains("y")) // gonna find a better way to read for the letter so that it looks for it in the readline instead of. looking for the readline to JUST be y
 {   // introduction
-    Console.WriteLine("* You are a small skeleton, alone in a wistful field."); Console.ReadLine(); //setting the scene
+    Console.WriteLine("* You are a small skeleton, alone in a wistful field. (any key to continue) "); Console.ReadLine(); //setting the scene
     Console.WriteLine("* The grey grass below you gristles, stray crumbs of grass chips and leaf bits flying with the same gust that flows through you. \nThere is a dense cloud of ash and mist surrounding you, blocking your direct view of the horizon on all sides..."); Console.ReadLine();
     Console.WriteLine("* There's a harsh and bitter, almost pitted smell in the air -- kind of like the casing of an urn. \nIf you weren't a cacophany of hollow bones, you'd probably sneeze!"); Console.ReadLine();
     Console.WriteLine("* You can't remember when you last had memory.. Or even thoughts for that matter. Odd!");
 }
 else
 {   // skip
-    Console.WriteLine("* Scanning the surrounding is for losers anyways. You're tough boned."); 
+    Console.WriteLine("* Scanning the surrounding is for losers anyways. You're tough boned. (any key to continue)");  
 }   // witch intro
 Console.ReadLine();
 Console.WriteLine("* You start roaming the path you know best before you know it. A large, tall, horrible \nstone tower is now apparent where you stand, looming far above you -- it's dark silhouette now piercing the smog, and casting over your frail, pale bones."); Console.ReadLine();
@@ -64,29 +66,87 @@ else
     Console.WriteLine("<< You now have "+(coin)+ "¢. (-2) >>");
 }
 Console.ReadLine();
-Console.WriteLine("* You ready yourself to enter the monolith. You feel whatever's causing everything weird would be at the root of it. Here I go!"); Console.ReadLine();
+Console.WriteLine("* You ready yourself to enter the monolith. You feel whatever's causing everything weird would be at the root of it. Here you go!"); Console.ReadLine();
 Console.Clear();
 // monolith
 // 2 sets, maybe 3 if i find the extra time                                         ----------------------------------------------------------------------------------------------------------
 // 3 different multi choice options, and a special encounter at the end (i.e. thief)                    ^ creating underline for fancy text                                                   d <- text for sans serif measurement
-Console.WriteLine("░▒▓██████████████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓█▓▒░      ░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓████████▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓████████▓▒░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n                                                                                                          \r\n----------------------------------------------------------------------------------------------------------\nSTAGE 1/3");
-Console.WriteLine("* You are now in the monolith. You hear chaos above you, but the only way to proceed is up the surrounding spiral stairs."); Console.ReadLine();
-Console.WriteLine("The stairs ahead of you look dangerous. You feel like you should proceed upwards with caution.");
+Console.WriteLine("░▒▓██████████████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓█▓▒░      ░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓████████▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓████████▓▒░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ \r\n                                                                                                          \r\n----------------------------------------------------------------------------------------------------------\nSTAGE DEMO");
+Console.WriteLine("* You are now in the monolith. You hear chaos above you, but the only way to proceed is up the surrounding spiral stairs. The steps are miscolored."); Console.ReadLine();
+Console.WriteLine("You feel like you should proceed with caution.");
 Console.WriteLine("  1  2  3  4  5"+"\n");
 Console.WriteLine("^ ▓▓ ░░ ▓▓ ▓▓ ██ ^");
 Console.WriteLine("| ▓▓ ▓▓ ██ ▓▓ ▓▓ |");
 Console.WriteLine("| ██ ▓▓ ▓▓ ▓▓ ▒▓ |");
 Console.WriteLine("| ▓▓ ▓▒ ▓▓ ██ ▓▓ |");
 Console.WriteLine("| ▓▓ ▓▓ ██ ▓▓ ░░ |");
-Console.WriteLine("       .(). <- you");
+Console.WriteLine("        ()  <- you");
 Console.WriteLine("Maybe you should pre-plan your path? [ENTER ORDER]");
 input = Console.ReadLine();
 if (input == "34135")
 {
-    Console.WriteLine("* You tiptoe across different bricks, weighing their riskiness and condition.");
+    Console.WriteLine("* You tiptoe across different bricks, correctly weighing their riskiness and condition.");
 }
 else
 {
     Console.WriteLine("* You have no idea what you're doing. Curse you hand-eye coordination!!!"); Console.ReadLine();
     Console.WriteLine("* An arrow emerges from the wall, hitting you straight in the skull. Ow!");
+    health -= 1;
+    if (unscathed == true)
+        unscathed = false;
+    Console.WriteLine(health+"/"+maxhealth);
 }
+Console.ReadLine();
+Console.WriteLine("* You continue on your path."); Console.ReadLine();
+Console.Clear();
+Console.WriteLine("* You come up to the peak of a corner. (░░)");
+Console.WriteLine("* You are now in a dark, narrow hallway. There lies platforms ahead of you, and a small, hurtful pit of spikes below. (░░)");
+Console.WriteLine("    ------------->");
+Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+Console.WriteLine("▓▓()░░▓▓░░▓▓░░▓▓▓▓");
+Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+Console.WriteLine("    ------------->");
+Console.WriteLine("These are gonna be some pretty long jumps. You should be precise with how far you want to move.");
+input = Console.ReadLine();
+if (input == ("2"))
+{
+    Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+    Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+    Console.WriteLine("▓▓▓▓░░()░░▓▓░░▓▓▓▓");
+    Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+    Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+    input = Console.ReadLine();
+    if (input == ("2"))
+    {
+        Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+        Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+        Console.WriteLine("▓▓▓▓░░▓▓░░()░░▓▓▓▓");
+        Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+        Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
+        input = Console.ReadLine();
+        if (input == ("2"))
+        {
+            Console.WriteLine("* You cross the gaps with relative ease.");
+        }
+    }
+}
+else
+{
+    Console.WriteLine("* You clumsily slip and fall down into the spikes. Ouch!\n You get up and dust yourself off in the midst of this sharp field."); Console.ReadLine();
+    health -= 1;
+    if (unscathed == true)
+    {
+        unscathed = false;
+    }
+}
+Console.WriteLine(health + "/" + maxhealth);
+Console.WriteLine("* Moving on!"); Console.ReadLine();
+Console.WriteLine("* You continue down the halls into a living room. There seems to be a..!?! Whats that noise??"); Console.ReadLine();
+Console.WriteLine("TO BE CONTINUED... GAME SUCCESS"); Console.ReadLine();
+if (unscathed == true)
+    Console.WriteLine("also u were unscathed lol");
+
+
+//death sequences down here
