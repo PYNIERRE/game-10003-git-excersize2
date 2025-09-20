@@ -1,5 +1,9 @@
-﻿int coin = 0;
+﻿using System.ComponentModel.Design;
+using System.Runtime.InteropServices;
+// initial stats
+int coin = 0;
 int health = 3;
+int maxhealth = 3;
 bool unscathed = true;
 bool dead = false;
 
@@ -90,7 +94,7 @@ else
     health -= 1;
     if (unscathed == true)
         unscathed = false;
-    Console.WriteLine(health+"/3");
+    Console.WriteLine(health+"/"+maxhealth);
 }
 Console.ReadLine();
 Console.WriteLine("* You continue on your path."); Console.ReadLine();
@@ -130,14 +134,14 @@ if (input == ("2"))
 }
 else
 {
-    Console.WriteLine("* You clumsily slip and fall down into the spikes. Ouch!\n You get up and dust yourself off, heading to the stairs nearby."); Console.ReadLine();
+    Console.WriteLine("* You clumsily slip and fall down into the spikes. Ouch!\n You get up and dust yourself off in the midst of this sharp field."); Console.ReadLine();
     health -= 1;
     if (unscathed == true)
     {
         unscathed = false;
     }
 }
-Console.WriteLine(health + "/3");
+Console.WriteLine(health + "/" + maxhealth);
 Console.WriteLine("* Moving on!"); Console.ReadLine();
 Console.WriteLine("* You continue down the halls into a living room. There seems to be a..!?! Whats that noise??"); Console.ReadLine();
 Console.WriteLine("TO BE CONTINUED... GAME SUCCESS"); Console.ReadLine();
