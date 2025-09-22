@@ -108,7 +108,7 @@ Console.WriteLine("▓▓()░░▓▓░░▓▓░░▓▓▓▓");
 Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
 Console.WriteLine("▓▓▓▓░░▓▓░░▓▓░░▓▓▓▓");
 Console.WriteLine("    ------------->");
-Console.WriteLine("These are gonna be some pretty long jumps. You should be precise with how far you want to move.");
+Console.WriteLine("These are gonna be some pretty long jumps. You should be precise with how far you want to move forward.");
 input = Console.ReadLine();
 if (input == ("2"))
 {
