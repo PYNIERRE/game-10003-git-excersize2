@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 // initial stats
 int coin = 0;
 int health = 3;
-int maxhealth = 3;
+int maxHealth = 3;
 bool unscathed = true;
 bool dead = false;
 
@@ -46,8 +46,8 @@ coin += 20;
 Console.WriteLine("\"Give that whole pouch to the merchant if you see em'. Tell him I said hi, and to stop being such a bucket-head on his 'sides' debate. I'm not fighting anymore.\""); Console.ReadLine();
 Console.WriteLine("* The lone witch starts hunkering away into the fog."); Console.ReadLine();
 Console.WriteLine("[1] Nod and wave\n[2] Stare");
-string choicestring = Console.ReadLine();
-int choice = int.Parse (choicestring);
+string choiceString = Console.ReadLine();
+int choice = int.Parse (choiceString);
 if (choice == 1)
 {
     Console.WriteLine("* You affirm, waving at the witch goodbye, appreciatively."); Console.ReadLine();
@@ -94,7 +94,7 @@ else
     health -= 1;
     if (unscathed == true)
         unscathed = false;
-    Console.WriteLine(health+"/"+maxhealth);
+    Console.WriteLine(health+"/"+maxHealth);
 }
 Console.ReadLine();
 Console.WriteLine("* You continue on your path."); Console.ReadLine();
@@ -141,7 +141,7 @@ else
         unscathed = false;
     }
 }
-Console.WriteLine(health + "/" + maxhealth);
+Console.WriteLine(health + "/" + maxHealth);
 Console.WriteLine("* Moving on!"); Console.ReadLine();
 Console.WriteLine("* You continue down the halls into a living room. There seems to be a..!?! Whats that noise??"); Console.ReadLine();
 Console.WriteLine("TO BE CONTINUED... GAME SUCCESS"); Console.ReadLine();
